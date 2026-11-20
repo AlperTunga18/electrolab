@@ -1,0 +1,26 @@
+# bağımlılıklar / derleme çıktıları
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# gizli bilgiler (API anahtarları vb. asla depoya girmemeli)
+.env
+.env.*
+*.pem
+*.key
+
+# yerel araç ayarları
+.claude/settings.local.json
+
+# işletim sistemi / editör
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

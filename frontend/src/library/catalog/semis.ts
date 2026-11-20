@@ -1,0 +1,115 @@
+import type { ComponentDef } from '../types';
+import { bjtPart, bridgePart, diodePart, ledPart, mosPart, zenerPart } from '../factories';
+const mos = mosPart;
+
+export const SEMIS: ComponentDef[] = [
+  // ---------------------------------------------------------------- rectifier / signal diodes
+  diodePart({ mpn: '1N4148', mfr: 'onsemi', desc: 'Genel amaçlı hızlı sinyal diyodu.', pkg: 'DO-35', vf: 0.72, ifTest: 0.01, ifmax: 0.2, vrmax: 100, tags: ['signal', 'fast'] }),
+  diodePart({ mpn: '1N914', mfr: 'onsemi', desc: 'Hızlı anahtarlama sinyal diyodu.', pkg: 'DO-35', vf: 0.72, ifTest: 0.01, ifmax: 0.2, vrmax: 100, tags: ['signal', 'fast'] }),
+  diodePart({ mpn: '1N4001', mfr: 'onsemi', desc: '1 A genel amaçlı redresör diyodu.', pkg: 'DO-41', vf: 0.93, ifTest: 1, ifmax: 1, vrmax: 50, tags: ['rectifier'] }),
+  diodePart({ mpn: '1N4002', mfr: 'onsemi', desc: '1 A genel amaçlı redresör diyodu.', pkg: 'DO-41', vf: 0.93, ifTest: 1, ifmax: 1, vrmax: 100, tags: ['rectifier'] }),
+  diodePart({ mpn: '1N4004', mfr: 'onsemi', desc: '1 A genel amaçlı redresör diyodu.', pkg: 'DO-41', vf: 0.93, ifTest: 1, ifmax: 1, vrmax: 400, tags: ['rectifier'] }),
+  diodePart({ mpn: '1N4007', mfr: 'onsemi', desc: '1 A, 1000 V genel amaçlı redresör diyodu.', pkg: 'DO-41', vf: 0.93, ifTest: 1, ifmax: 1, vrmax: 1000, tags: ['rectifier'] }),
+  diodePart({ mpn: '1N5399', mfr: 'Vishay', desc: '1.5 A, 1000 V redresör diyodu.', pkg: 'DO-15', vf: 1.0, ifTest: 1.5, ifmax: 1.5, vrmax: 1000, tags: ['rectifier'] }),
+  diodePart({ mpn: '1N5408', mfr: 'onsemi', desc: '3 A, 1000 V redresör diyodu.', pkg: 'DO-201AD', vf: 1.0, ifTest: 3, ifmax: 3, vrmax: 1000, tags: ['rectifier'] }),
+  diodePart({ mpn: 'UF4007', mfr: 'Vishay', desc: '1 A, 1000 V ultra hızlı redresör diyodu.', pkg: 'DO-41', vf: 1.7, ifTest: 1, ifmax: 1, vrmax: 1000, tags: ['rectifier', 'fast'], specs: { 'Vf notu': 'Maks. değer (datasheet)' } }),
+  diodePart({ mpn: 'FR107', mfr: 'Diodes Inc.', desc: '1 A, 1000 V hızlı toparlanmalı redresör diyodu.', pkg: 'DO-41', vf: 1.3, ifTest: 1, ifmax: 1, vrmax: 1000, tags: ['rectifier', 'fast'] }),
+
+  // ---------------------------------------------------------------- Schottky
+  diodePart({ mpn: '1N5817', mfr: 'onsemi', desc: '1 A, 20 V Schottky diyot.', pkg: 'DO-41', vf: 0.35, ifTest: 1, ifmax: 1, vrmax: 20, schottky: true, tags: ['schottky'] }),
+  diodePart({ mpn: '1N5818', mfr: 'onsemi', desc: '1 A, 30 V Schottky diyot.', pkg: 'DO-41', vf: 0.4, ifTest: 1, ifmax: 1, vrmax: 30, schottky: true, tags: ['schottky'] }),
+  diodePart({ mpn: '1N5819', mfr: 'onsemi', desc: '1 A, 40 V Schottky diyot.', pkg: 'DO-41', vf: 0.45, ifTest: 1, ifmax: 1, vrmax: 40, schottky: true, tags: ['schottky'] }),
+  diodePart({ mpn: '1N5822', mfr: 'onsemi', desc: '3 A, 40 V Schottky diyot.', pkg: 'DO-201AD', vf: 0.45, ifTest: 3, ifmax: 3, vrmax: 40, schottky: true, tags: ['schottky'] }),
+  diodePart({ mpn: 'SS14', mfr: 'Vishay', desc: '1 A, 40 V SMD Schottky diyot.', pkg: 'SMA (DO-214AC)', vf: 0.45, ifTest: 1, ifmax: 1, vrmax: 40, schottky: true, tags: ['schottky', 'smd'] }),
+  diodePart({ mpn: 'SS34', mfr: 'Vishay', desc: '3 A, 40 V SMD Schottky diyot.', pkg: 'SMC (DO-214AB)', vf: 0.45, ifTest: 3, ifmax: 3, vrmax: 40, schottky: true, tags: ['schottky', 'smd'] }),
+  diodePart({ mpn: 'BAT54', mfr: 'Nexperia', desc: '200 mA, 30 V küçük sinyal Schottky diyot.', pkg: 'SOT-23', vf: 0.32, ifTest: 0.001, ifmax: 0.2, vrmax: 30, schottky: true, tags: ['schottky', 'smd'] }),
+  diodePart({ mpn: 'SB560', mfr: 'Diodes Inc.', desc: '5 A, 60 V Schottky diyot.', pkg: 'DO-201AD', vf: 0.55, ifTest: 5, ifmax: 5, vrmax: 60, schottky: true, tags: ['schottky'] }),
+  diodePart({ mpn: 'MBR1045', mfr: 'onsemi', desc: '10 A, 45 V Schottky redresör diyodu.', pkg: 'TO-220', vf: 0.55, ifTest: 10, ifmax: 10, vrmax: 45, schottky: true, tags: ['schottky'] }),
+
+  // ---------------------------------------------------------------- zener, 1 W (1N47xx)
+  zenerPart({ mpn: '1N4728A', mfr: 'onsemi', desc: '3.3 V, 1 W zener diyot.', pkg: 'DO-41', vz: 3.3, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4732A', mfr: 'onsemi', desc: '4.7 V, 1 W zener diyot.', pkg: 'DO-41', vz: 4.7, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4733A', mfr: 'onsemi', desc: '5.1 V, 1 W zener diyot.', pkg: 'DO-41', vz: 5.1, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4735A', mfr: 'onsemi', desc: '6.2 V, 1 W zener diyot.', pkg: 'DO-41', vz: 6.2, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4739A', mfr: 'onsemi', desc: '9.1 V, 1 W zener diyot.', pkg: 'DO-41', vz: 9.1, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4742A', mfr: 'onsemi', desc: '12 V, 1 W zener diyot.', pkg: 'DO-41', vz: 12, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4744A', mfr: 'onsemi', desc: '15 V, 1 W zener diyot.', pkg: 'DO-41', vz: 15, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4746A', mfr: 'onsemi', desc: '18 V, 1 W zener diyot.', pkg: 'DO-41', vz: 18, pmax: 1, tags: ['zener'] }),
+  zenerPart({ mpn: '1N4749A', mfr: 'onsemi', desc: '24 V, 1 W zener diyot.', pkg: 'DO-41', vz: 24, pmax: 1, tags: ['zener'] }),
+  // 0.5 W (1N52xx / BZX55)
+  zenerPart({ mpn: '1N5226B', mfr: 'onsemi', desc: '3.3 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 3.3, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: '1N5231B', mfr: 'onsemi', desc: '5.1 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 5.1, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: '1N5242B', mfr: 'onsemi', desc: '12 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 12, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: '1N5252B', mfr: 'onsemi', desc: '24 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 24, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: 'BZX55C3V3', mfr: 'Vishay', desc: '3.3 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 3.3, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: 'BZX55C5V1', mfr: 'Vishay', desc: '5.1 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 5.1, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: 'BZX55C6V2', mfr: 'Vishay', desc: '6.2 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 6.2, pmax: 0.5, tags: ['zener'] }),
+  zenerPart({ mpn: 'BZX55C12', mfr: 'Vishay', desc: '12 V, 0.5 W zener diyot.', pkg: 'DO-35', vz: 12, pmax: 0.5, tags: ['zener'] }),
+
+  // ---------------------------------------------------------------- TVS (Vbr = datasheet minimum, power = peak pulse)
+  zenerPart({ mpn: 'SMAJ5.0A', mfr: 'Littelfuse', desc: '5 V çalışma gerilimli 400 W tek yönlü TVS diyot.', pkg: 'SMA (DO-214AC)', vz: 6.4, pmax: 0.4, tvs: true, tags: ['tvs', 'protection'], specs: { 'Vrwm': '5.0 V', 'Pppm (10/1000 µs)': '400 W' } }),
+  zenerPart({ mpn: 'SMAJ12A', mfr: 'Littelfuse', desc: '12 V çalışma gerilimli 400 W tek yönlü TVS diyot.', pkg: 'SMA (DO-214AC)', vz: 13.3, pmax: 0.4, tvs: true, tags: ['tvs', 'protection'], specs: { 'Vrwm': '12 V', 'Pppm (10/1000 µs)': '400 W' } }),
+  zenerPart({ mpn: 'SMAJ15A', mfr: 'Littelfuse', desc: '15 V çalışma gerilimli 400 W tek yönlü TVS diyot.', pkg: 'SMA (DO-214AC)', vz: 16.7, pmax: 0.4, tvs: true, tags: ['tvs', 'protection'], specs: { 'Vrwm': '15 V', 'Pppm (10/1000 µs)': '400 W' } }),
+  zenerPart({ mpn: 'SMBJ24A', mfr: 'Littelfuse', desc: '24 V çalışma gerilimli 600 W tek yönlü TVS diyot.', pkg: 'SMB (DO-214AA)', vz: 26.7, pmax: 0.6, tvs: true, tags: ['tvs', 'protection'], specs: { 'Vrwm': '24 V', 'Pppm (10/1000 µs)': '600 W' } }),
+  zenerPart({ mpn: 'P6KE18A', mfr: 'Littelfuse', desc: '18 V anma gerilimli 600 W tek yönlü TVS diyot.', pkg: 'DO-15', vz: 17.1, pmax: 0.6, tvs: true, tags: ['tvs', 'protection'], specs: { 'Pppm (10/1000 µs)': '600 W' } }),
+
+  // ---------------------------------------------------------------- LEDs (generic)
+  ledPart({ id: 'led_5mm_red', mpn: 'LED 5mm kırmızı', name: 'LED 5mm kırmızı', desc: '5 mm kırmızı standart LED.', pkg: '5 mm', color: 'red', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_5mm_green', mpn: 'LED 5mm yeşil', name: 'LED 5mm yeşil', desc: '5 mm yeşil standart LED.', pkg: '5 mm', color: 'green', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_5mm_blue', mpn: 'LED 5mm mavi', name: 'LED 5mm mavi', desc: '5 mm mavi LED.', pkg: '5 mm', color: 'blue', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_5mm_yellow', mpn: 'LED 5mm sarı', name: 'LED 5mm sarı', desc: '5 mm sarı standart LED.', pkg: '5 mm', color: 'yellow', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_5mm_white', mpn: 'LED 5mm beyaz', name: 'LED 5mm beyaz', desc: '5 mm beyaz LED.', pkg: '5 mm', color: 'white', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_5mm_orange', mpn: 'LED 5mm turuncu', name: 'LED 5mm turuncu', desc: '5 mm turuncu standart LED.', pkg: '5 mm', color: 'orange', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_5mm_ir_940', mpn: 'LED 5mm IR 940nm', name: 'LED 5mm IR 940nm', desc: '5 mm kızılötesi (940 nm) LED, gözle görünmez.', pkg: '5 mm', color: 'ir', ifmax: 0.02, tags: ['led', 'ir'] }),
+  ledPart({ id: 'led_5mm_uv', mpn: 'LED 5mm UV', name: 'LED 5mm UV', desc: '5 mm mor ötesi (UV) LED.', pkg: '5 mm', color: 'uv', ifmax: 0.02, tags: ['led', 'uv'] }),
+  ledPart({ id: 'led_3mm_red', mpn: 'LED 3mm kırmızı', name: 'LED 3mm kırmızı', desc: '3 mm kırmızı standart LED.', pkg: '3 mm', color: 'red', ifmax: 0.02, tags: ['led'] }),
+  ledPart({ id: 'led_3mm_green', mpn: 'LED 3mm yeşil', name: 'LED 3mm yeşil', desc: '3 mm yeşil standart LED.', pkg: '3 mm', color: 'green', ifmax: 0.02, tags: ['led'] }),
+
+  // ---------------------------------------------------------------- bridge rectifiers
+  bridgePart({ mpn: 'DB107', mfr: 'Diodes Inc.', desc: '1 A, 1000 V DIP köprü redresör.', pkg: 'DB-1', vf: 1.0, ifTest: 1, ifmax: 1, vrmax: 1000, tags: ['rectifier', 'bridge'] }),
+  bridgePart({ mpn: 'W10M', mfr: 'Diodes Inc.', desc: '1.5 A, 1000 V yuvarlak köprü redresör.', pkg: 'WOM', vf: 1.0, ifTest: 1.5, ifmax: 1.5, vrmax: 1000, tags: ['rectifier', 'bridge'] }),
+  bridgePart({ mpn: 'KBPC5010', mfr: 'Diodes Inc.', desc: '50 A, 1000 V şasi tipi köprü redresör.', pkg: 'KBPC', vf: 1.1, ifTest: 25, ifmax: 50, vrmax: 1000, tags: ['rectifier', 'bridge', 'power'] }),
+  bridgePart({ mpn: 'MB6S', mfr: 'Diodes Inc.', desc: '0.5 A, 600 V SMD mini köprü redresör.', pkg: 'SOIC-4 (MBS)', vf: 1.0, ifTest: 0.5, ifmax: 0.5, vrmax: 600, tags: ['rectifier', 'bridge', 'smd'] }),
+
+  // ---------------------------------------------------------------- BJT
+  bjtPart({ mpn: '2N2222A', mfr: 'onsemi', desc: 'Genel amaçlı NPN anahtarlama transistörü.', pkg: 'TO-18', pol: 'npn', bf: 200, icmax: 0.8, pmax: 0.5, vceo: 40, tags: ['npn', 'general'] }),
+  bjtPart({ mpn: '2N3904', mfr: 'onsemi', desc: 'Genel amaçlı küçük sinyal NPN transistör.', pkg: 'TO-92', pol: 'npn', bf: 150, icmax: 0.2, pmax: 0.625, vceo: 40, tags: ['npn', 'general'] }),
+  bjtPart({ mpn: '2N3906', mfr: 'onsemi', desc: 'Genel amaçlı küçük sinyal PNP transistör.', pkg: 'TO-92', pol: 'pnp', bf: 150, icmax: 0.2, pmax: 0.625, vceo: 40, tags: ['pnp', 'general'] }),
+  bjtPart({ mpn: '2N2907A', mfr: 'onsemi', desc: 'Genel amaçlı PNP anahtarlama transistörü.', pkg: 'TO-18', pol: 'pnp', bf: 150, icmax: 0.6, pmax: 0.4, vceo: 60, tags: ['pnp', 'general'] }),
+  bjtPart({ mpn: 'BC547B', mfr: 'onsemi', desc: 'Düşük gürültülü küçük sinyal NPN transistör.', pkg: 'TO-92', pol: 'npn', bf: 290, icmax: 0.1, pmax: 0.5, vceo: 45, tags: ['npn', 'general'] }),
+  bjtPart({ mpn: 'BC548B', mfr: 'onsemi', desc: 'Düşük gerilimli küçük sinyal NPN transistör.', pkg: 'TO-92', pol: 'npn', bf: 290, icmax: 0.1, pmax: 0.5, vceo: 30, tags: ['npn', 'general'] }),
+  bjtPart({ mpn: 'BC557B', mfr: 'onsemi', desc: 'Düşük gürültülü küçük sinyal PNP transistör.', pkg: 'TO-92', pol: 'pnp', bf: 290, icmax: 0.1, pmax: 0.5, vceo: 45, tags: ['pnp', 'general'] }),
+  bjtPart({ mpn: 'BC337', mfr: 'onsemi', desc: '800 mA orta güçlü NPN transistör.', pkg: 'TO-92', pol: 'npn', bf: 200, icmax: 0.8, pmax: 0.625, vceo: 45, tags: ['npn'] }),
+  bjtPart({ mpn: 'BC327', mfr: 'onsemi', desc: '800 mA orta güçlü PNP transistör.', pkg: 'TO-92', pol: 'pnp', bf: 200, icmax: 0.8, pmax: 0.625, vceo: 45, tags: ['pnp'] }),
+  bjtPart({ mpn: '2N5551', mfr: 'onsemi', desc: 'Yüksek gerilimli (160 V) küçük sinyal NPN transistör.', pkg: 'TO-92', pol: 'npn', bf: 100, icmax: 0.6, pmax: 0.625, vceo: 160, tags: ['npn', 'high-voltage'] }),
+  bjtPart({ mpn: 'BD139', mfr: 'STMicroelectronics', desc: '1.5 A orta güçlü NPN transistör.', pkg: 'SOT-32', pol: 'npn', bf: 100, icmax: 1.5, pmax: 12.5, vceo: 80, power: true, tags: ['npn', 'power'] }),
+  bjtPart({ mpn: 'BD140', mfr: 'STMicroelectronics', desc: '1.5 A orta güçlü PNP transistör.', pkg: 'SOT-32', pol: 'pnp', bf: 100, icmax: 1.5, pmax: 12.5, vceo: 80, power: true, tags: ['pnp', 'power'] }),
+  bjtPart({ mpn: 'TIP31C', mfr: 'onsemi', desc: '3 A, 100 V güç NPN transistörü.', pkg: 'TO-220', pol: 'npn', bf: 40, icmax: 3, pmax: 40, vceo: 100, power: true, tags: ['npn', 'power'] }),
+  bjtPart({ mpn: 'TIP32C', mfr: 'onsemi', desc: '3 A, 100 V güç PNP transistörü.', pkg: 'TO-220', pol: 'pnp', bf: 40, icmax: 3, pmax: 40, vceo: 100, power: true, tags: ['pnp', 'power'] }),
+  bjtPart({ mpn: 'TIP120', mfr: 'onsemi', desc: '5 A, 60 V NPN Darlington güç transistörü.', pkg: 'TO-220', pol: 'npn', bf: 1000, icmax: 5, pmax: 65, vceo: 60, darlington: true, power: true, tags: ['npn', 'darlington', 'power'] }),
+  bjtPart({ mpn: 'TIP122', mfr: 'onsemi', desc: '5 A, 100 V NPN Darlington güç transistörü.', pkg: 'TO-220', pol: 'npn', bf: 1000, icmax: 5, pmax: 65, vceo: 100, darlington: true, power: true, tags: ['npn', 'darlington', 'power'] }),
+  bjtPart({ mpn: 'TIP127', mfr: 'onsemi', desc: '5 A, 100 V PNP Darlington güç transistörü.', pkg: 'TO-220', pol: 'pnp', bf: 1000, icmax: 5, pmax: 65, vceo: 100, darlington: true, power: true, tags: ['pnp', 'darlington', 'power'], specs: { Yapı: 'Darlington (PNP)' } }),
+  bjtPart({ mpn: '2N3055', mfr: 'onsemi', desc: '15 A, 60 V klasik güç NPN transistörü.', pkg: 'TO-3', pol: 'npn', bf: 40, icmax: 15, pmax: 115, vceo: 60, power: true, tags: ['npn', 'power'] }),
+  bjtPart({ mpn: 'MJE3055T', mfr: 'onsemi', desc: '10 A, 60 V güç NPN transistörü.', pkg: 'TO-220', pol: 'npn', bf: 40, icmax: 10, pmax: 75, vceo: 60, power: true, tags: ['npn', 'power'] }),
+
+  // ---------------------------------------------------------------- MOSFET (vgsTest = VGS at which RDS(on) is specified)
+  mos({ mpn: 'IRFZ44N', mfr: 'Infineon/International Rectifier', desc: '55 V, 49 A güç N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 55, id: 49, rds: 0.0175, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRLZ44N', mfr: 'Infineon/International Rectifier', desc: '55 V, 47 A mantık seviyeli N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 55, id: 47, rds: 0.022, vgsTest: 10, vth: 1.5, vgsmax: 16, tags: ['nmos', 'power', 'logic-level'] }),
+  mos({ mpn: 'IRF540N', mfr: 'Infineon/International Rectifier', desc: '100 V, 33 A güç N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 100, id: 33, rds: 0.044, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRF520N', mfr: 'Infineon/International Rectifier', desc: '100 V, 9.7 A güç N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 100, id: 9.7, rds: 0.2, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRF9540N', mfr: 'Infineon/International Rectifier', desc: '100 V, 23 A güç P-kanal MOSFET.', pkg: 'TO-220', pol: 'p', vds: 100, id: 23, rds: 0.117, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['pmos', 'power'] }),
+  mos({ mpn: 'IRF9Z34N', mfr: 'Infineon/International Rectifier', desc: '55 V, 19 A güç P-kanal MOSFET.', pkg: 'TO-220', pol: 'p', vds: 55, id: 19, rds: 0.1, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['pmos', 'power'] }),
+  mos({ mpn: 'IRLB8721', mfr: 'Infineon/International Rectifier', desc: '30 V, 62 A mantık seviyeli N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 30, id: 62, rds: 0.0087, vgsTest: 10, vth: 1.8, vgsmax: 20, tags: ['nmos', 'power', 'logic-level'] }),
+  mos({ mpn: 'IRFP260N', mfr: 'Infineon/International Rectifier', desc: '200 V, 50 A güç N-kanal MOSFET.', pkg: 'TO-247', pol: 'n', vds: 200, id: 50, rds: 0.04, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRF3205', mfr: 'Infineon/International Rectifier', desc: '55 V, 110 A çok düşük RDS(on) N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 55, id: 110, rds: 0.008, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRL540N', mfr: 'Infineon/International Rectifier', desc: '100 V, 36 A mantık seviyeli N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 100, id: 36, rds: 0.044, vgsTest: 10, vth: 1.7, vgsmax: 16, tags: ['nmos', 'power', 'logic-level'] }),
+  mos({ mpn: '2N7000', mfr: 'onsemi', desc: '60 V, 200 mA küçük sinyal N-kanal MOSFET.', pkg: 'TO-92', pol: 'n', vds: 60, id: 0.2, rds: 5, vgsTest: 10, vth: 2, vgsmax: 20, small: true, tags: ['nmos', 'small-signal'] }),
+  mos({ mpn: 'BS170', mfr: 'onsemi', desc: '60 V, 500 mA küçük sinyal N-kanal MOSFET.', pkg: 'TO-92', pol: 'n', vds: 60, id: 0.5, rds: 5, vgsTest: 10, vth: 2.1, vgsmax: 20, small: true, tags: ['nmos', 'small-signal'] }),
+  mos({ mpn: 'IRLML6402', mfr: 'Infineon/International Rectifier', desc: '20 V, 3.7 A düşük gerilimli SMD P-kanal MOSFET.', pkg: 'SOT-23', pol: 'p', vds: 20, id: 3.7, rds: 0.065, vgsTest: 4.5, vth: 0.7, vgsmax: 12, small: true, tags: ['pmos', 'logic-level', 'smd'] }),
+  mos({ mpn: 'AO3400A', mfr: 'Alpha&Omega', desc: '30 V, 5.7 A SMD N-kanal MOSFET.', pkg: 'SOT-23', pol: 'n', vds: 30, id: 5.7, rds: 0.033, vgsTest: 10, vth: 1.05, vgsmax: 12, small: true, tags: ['nmos', 'logic-level', 'smd'] }),
+  mos({ mpn: 'FQP30N06L', mfr: 'Fairchild', desc: '60 V, 32 A mantık seviyeli N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 60, id: 32, rds: 0.035, vgsTest: 10, vth: 1.7, vgsmax: 20, tags: ['nmos', 'power', 'logic-level'] }),
+  mos({ mpn: 'STP16NF06', mfr: 'STMicroelectronics', desc: '60 V, 16 A güç N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 60, id: 16, rds: 0.08, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRF630', mfr: 'Vishay', desc: '200 V, 9 A güç N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 200, id: 9, rds: 0.4, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRF640N', mfr: 'Infineon/International Rectifier', desc: '200 V, 18 A güç N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 200, id: 18, rds: 0.15, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+  mos({ mpn: 'IRF1404', mfr: 'Infineon/International Rectifier', desc: '40 V, 162 A çok düşük RDS(on) N-kanal MOSFET.', pkg: 'TO-220', pol: 'n', vds: 40, id: 162, rds: 0.004, vgsTest: 10, vth: 3, vgsmax: 20, tags: ['nmos', 'power'] }),
+];
